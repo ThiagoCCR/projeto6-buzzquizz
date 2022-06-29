@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #FAFAFA;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header{
+    position: fixed;
+    right: 0;
+    left: 0;
+    height: 69px;
+    background-color: #EC362D;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    font-family: 'Roboto', sans-serif;
+    color:#FFFFFF;
+    font-weight: 700;
+    font-size: 37px;
+}
+
+.usuario-quizz{
+    border: 1px dashed #D4D4D4;
+    border-radius: 5px;
+    width: 1051px;
+    height: 181px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
+}
+
+.titulo-botao{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+h2{
+    font-family: 'Roboto', sans-serif;
+    color:#B9B9B9;
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+}
+
+.criar-quizz-g{
+    width: 151px;
+    height: 40px;
+    color: #EC362D;
+    background-color: #FAFAFA;
+    border: 1px dashed #EC362D;
+    border-radius: 50px;
+    align-self: center;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.outros-quizz{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+h3{
+    font-family: 'Roboto', sans-serif;
+    color:#000000;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: flex-start;
+    line-height: 30px;
+}
+
+
+.quizz-container{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 15px;
+    max-width: 1051px;
+}
+
+.quizz{
+    margin-top: 15px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 150%, #000000 100%),  url("./img/Rectangle 36.png");
+    width: 340px;
+    height: 181px;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    border-radius: 5px;
+    
+}
+
+.titulo-quizz{
+    font-family: 'Roboto', sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+
+/* TELA COMPLETA */
+
+.usuario-quizz-completo{
+    display: flex;
+    flex-direction: column;
+    margin-top: 150px;
+}
+
+.titulo-botao-completo{
+    display: flex;
+    flex-direction: row;
+}
+
+.criar-quizz-p{
+    color: #EC362D;
+    font-size: 30px;
+    margin-left: 15px;
+}
+
+.meu-quizz-container{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 15px;
+    max-width: 1051px;
+}
+
+
+
+
+
