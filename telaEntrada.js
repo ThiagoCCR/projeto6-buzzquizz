@@ -38,18 +38,18 @@ function mostrarTelaSemQuizz1() {
         <div class="header">
             <h1>BuzzQuizz</h1>
         </div>
-        <div class="main">
-            <div class="conteudo-usuario">
-                <div class="usuario-quizz">
-                    <div class="titulo-botao">
+        <div class="main1">
+            <div class="conteudo-usuario1">
+                <div class="usuario-quizz1">
+                    <div class="titulo-botao1">
                         <h2>Você não criou nenhum </br>quizz ainda :(</h2>
-                        <button class="criar-quizz-g" onclick="criarQuizz1()">Criar Quizz</button>
+                        <button class="criar-quizz-g1" onclick="criarQuizz1()">Criar Quizz</button>
                     </div>
                 </div>
             </div>
-            <div class="outros-quizz">
+            <div class="outros-quizz1">
                 <h3>Todos os Quizzes</h3>
-                <div class="quizz-container"></div>
+                <div class="quizz-container1"></div>
             </div>
         </div>`
 
@@ -57,11 +57,11 @@ function mostrarTelaSemQuizz1() {
 
     for (let i=0; i<listaQuizz1.length; i++){
         let iterarQuizz = listaQuizz1[i];
-        const quizContainerDiv = document.querySelector('.quizz-container');
+        const quizContainerDiv = document.querySelector('.quizz-container1');
         const templateQuizz = `
-        <div class="quizz" onclick="abrirQuizz1()">
+        <div class="quizz1" onclick="abrirQuizz1()">
             <img src=${iterarQuizz.image}/>
-            <div class="titulo-quizz">
+            <div class="titulo-quizz1">
                 <p>${iterarQuizz.title}</p>
             </div>
         </div>`
@@ -73,22 +73,22 @@ function mostrarTelaSemQuizz1() {
 function  mostrarTelaCompleta1(){
     const bodyDiv = document.querySelector('body');
     const templateBody =`
-        <div class="header">
+        <div class="header1">
             <h1>BuzzQuizz</h1>
         </div>
-        <div class="main">
-            <div class="conteudo-usuario">
-                <div class="usuario-quizz-completo">
-                    <div class="titulo-botao-completo">
+        <div class="main1">
+            <div class="conteudo-usuario1">
+                <div class="usuario-quizz-completo1">
+                    <div class="titulo-botao-completo1">
                         <h3>Seus Quizzes</h3>
-                        <ion-icon class="criar-quizz-p" name="add-circle"></ion-icon>
+                        <ion-icon class="criar-quizz-p1" name="add-circle"></ion-icon>
                     </div>
-                    <div class="meu-quizz-container"></div>
+                    <div class="meu-quizz-container1"></div>
                 </div>
             </div>
-            <div class="outros-quizz">
+            <div class="outros-quizz1">
                 <h3>Todos os Quizzes</h3>
-                <div class="quizz-container"></div>
+                <div class="quizz-container1"></div>
             </div>
         </div>`
 
@@ -96,11 +96,11 @@ function  mostrarTelaCompleta1(){
 
     for (let i=0; i<listaQuizzUsuário1.length; i++){
         let iterarQuizz = listaQuizzUsuário1[i];
-        const quizContainerDiv = document.querySelector('.meu-quizz-container');
+        const quizContainerDiv = document.querySelector('.meu-quizz-container1');
         const templateQuizz = `
-        <div class="quizz" onclick="abrirQuizz1()">
+        <div class="quizz1" onclick="abrirQuizz1()">
             <img src=${iterarQuizz.image}/>
-            <div class="titulo-quizz">
+            <div class="titulo-quizz1">
                 <p>${iterarQuizz.title}</p>
             </div>
         </div>`
