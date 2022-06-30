@@ -35,7 +35,7 @@ function renderizarTelaInicial1() {
 function mostrarTelaSemQuizz1() {
     const bodyDiv = document.querySelector('body');
     const templateBody =`
-        <div class="header">
+        <div class="header1">
             <h1>BuzzQuizz</h1>
         </div>
         <div class="main1">
