@@ -7,6 +7,12 @@ function renderizarTela03(element){
 }
 
 function pegarQuizzSelecionadoAPI3(){
+    
+    for (let i=0; i< listaQuizz1.length;i++){
+        
+
+
+    }
 
 }    
 
