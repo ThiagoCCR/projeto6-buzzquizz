@@ -120,8 +120,11 @@ function abrirQuizz1(element){
 }
 
 
-function criarQuizz1(){
-    const BodyDiv = document.querySelector('body');
+function criarQuizz1() {
+    const BodyDiv = document.querySelector(".main1");
     BodyDiv.innerHTML = "";
-    //CHAMAR FUNÇÃO QUE APARECE A TELA DE CRIAR QUIZZ: PENDING!
-}
+      criarQuizz();
+    
+      //BodyDiv.innerHTML = "";
+      //CHAMAR FUNÇÃO QUE APARECE A TELA DE CRIAR QUIZZ: PENDING!
+    }

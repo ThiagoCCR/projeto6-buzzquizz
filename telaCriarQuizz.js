@@ -1,5 +1,5 @@
 function criarQuizz() {
-  const BodyDiv = document.querySelector(".main");
+  const BodyDiv = document.querySelector(".main1");
   BodyDiv.innerHTML = "";
   const criacaoQuizz = `
   <div class="criarQuizz criacaoTela1">
@@ -17,7 +17,7 @@ function criarQuizz() {
 }
 
 function criarPerguntas() {
-  const BodyDiv = document.querySelector(".main");
+  const BodyDiv = document.querySelector(".main1");
   BodyDiv.innerHTML = "";
 
   const criacaoPerguntas = `
@@ -45,7 +45,7 @@ function criarPerguntas() {
 }
 
 function criarNiveis() {
-  const BodyDiv = document.querySelector(".main");
+  const BodyDiv = document.querySelector(".main1");
   BodyDiv.innerHTML = "";
 
     const criacaoNiveis = `
@@ -65,7 +65,7 @@ function criarNiveis() {
   }
 
   function finalizarQuizz() {
-    const BodyDiv = document.querySelector(".main");
+    const BodyDiv = document.querySelector(".main1");
   BodyDiv.innerHTML = "";
 
     
