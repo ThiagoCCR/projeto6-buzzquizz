@@ -10,12 +10,26 @@ function criarQuizz() {
   <input type="number" placeholder="Quantidade de perguntas do quizz" />
   <input type="number" placeholder="Quantidade de níveis do quizz" />
   </div>
-  <div class="prosseguir" onclick="criarPerguntas()">Prosseguir para criar perguntas</div>
+  <div class="prosseguir" onclick="validacaoBasica()">Prosseguir para criar perguntas</div>
   </div> 
     `;
     BodyDiv.innerHTML = criacaoQuizz;
+    console.log(document.querySelector(".esqueletoQuizz :nth-child(4)"))
 }
 
+function validacaoBasica() {
+  const titulo = document.querySelector(".esqueletoQuizz :nth-child(1)");
+  const urlImagem = document.querySelector(".esqueletoQuizz :nth-child(2)");
+  const qntPerguntas = document.querySelector(".esqueletoQuizz :nth-child(3)");
+  const qntNiveis = document.querySelector(".esqueletoQuizz :nth-child(4)");
+
+  if (titulo.value.length < 20 || titulo.value.length > 65 || qntPerguntas.value < 3 || qntNiveis.value < 2)
+    {
+   return;
+  } 
+  criarPerguntas();
+}
+  
 
 function criarPerguntas() {
   const BodyDiv = document.querySelector(".main1");
@@ -31,7 +45,8 @@ function criarPerguntas() {
   </div>
   `
     BodyDiv.innerHTML = lanesPerguntas;
-}
+  }
+
 
 function editarPerguntas() {
   const BodyDiv = document.querySelector(".main1");
