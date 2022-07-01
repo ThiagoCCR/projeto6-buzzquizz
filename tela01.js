@@ -59,7 +59,7 @@ function mostrarTelaSemQuizz1() {
         let iterarQuizz = listaQuizz1[i];
         const quizContainerDiv = document.querySelector('.quizz-container1');
         const templateQuizz = `
-        <div class="quizz1" onclick="abrirQuizz1(this)">
+        <div class="quizz1" onclick="abrirQuizz1(${iterarQuizz.id})">
             <img src='${iterarQuizz.image}'/>
             <div class="titulo-quizz1">
                 <p>${iterarQuizz.title}</p>
@@ -111,12 +111,11 @@ function  mostrarTelaCompleta1(){
 
 
 
-function abrirQuizz1(element){
+function abrirQuizz1(id){
     const BodyDiv = document.querySelector('body');
-    imgQuizz3 = JSON.stringify(element.querySelector('img').getAttribute('src'));
-    tituloQuizz3 = element.querySelector('p').innerHTML;
+    idQuizz3 = id;
     BodyDiv.innerHTML = "";
-    renderizarTela03(element);
+    renderizarTela03();
 }
 
 
@@ -124,7 +123,6 @@ function criarQuizz1() {
     const BodyDiv = document.querySelector(".main1");
     BodyDiv.innerHTML = "";
       criarQuizz();
-    
       //BodyDiv.innerHTML = "";
       //CHAMAR FUNÇÃO QUE APARECE A TELA DE CRIAR QUIZZ: PENDING!
     }

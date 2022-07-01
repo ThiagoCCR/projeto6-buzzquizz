@@ -1,22 +1,33 @@
 
-
-.header{
-    position: fixed;
-    right: 0;
-    left: 0;
-    height: 69px;
-    background-color: #EC362D;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-}
-
 .titulo3{
     width: 100vw;
     height: 227px;
-    background-color: blue;
+    position: relative;
+}
+
+.titulo-txt{
+    height: 100%;
+    width: 100%;
+    color: #FFFFFF;
+    position: absolute;
+    top:60px;
+    left: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 40%, #000000 100%);
+}
+
+.titulo3 img{
+    width: 100%;
+    height: 227px;
+    margin-top: 60px;
+}
+
+.titulo3 p{
+    position: absolute;
+    top:150px;
+    left: 50%;
+    color: #FFFFFF;
+    font-size: 39px;
 }
 
 .titulo-pergunta-3{
