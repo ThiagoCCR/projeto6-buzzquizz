@@ -78,7 +78,7 @@ function renderizarQuestoes3() {
 
         const questao = objQuizz3.questions[i];
         const numRespostas = questao.answers.length;
-        // const respostasDiv = document.querySelector('.respostas3 >:nth-child(i+1)');
+        const respostasDiv = document.querySelector();
         // console.log(respostasDiv)
 
         // for (let y = 0; y < numRespostas; y++) {
