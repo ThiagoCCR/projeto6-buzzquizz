@@ -20,6 +20,23 @@ function criarPerguntas() {
   const BodyDiv = document.querySelector(".main1");
   BodyDiv.innerHTML = "";
 
+  const lanesPerguntas = `
+  <div class="criarQuizz criacaoTela2">
+  <h1>Crie suas perguntas</h1>
+  <div class="perguntas">
+  <div class="teste">
+  <span>Pergunta 1</span>
+  <ion-icon name="create-outline" onclick="editarPerguntas()"></ion-icon>
+  </div>
+  `
+
+  
+    BodyDiv.innerHTML = lanesPerguntas;
+}
+
+function editarPerguntas() {
+  const BodyDiv = document.querySelector(".main1");
+  BodyDiv.innerHTML = "";
   const criacaoPerguntas = `
   <div class="criarQuizz criacaoTela2">
   <h1>Crie suas perguntas</h1>
@@ -41,11 +58,29 @@ function criarPerguntas() {
   <div class="prosseguir" onclick="criarNiveis()">Prosseguir para criar níveis</div>
   </div> 
     `;
+
     BodyDiv.innerHTML = criacaoPerguntas;
 }
 
 function criarNiveis() {
   const BodyDiv = document.querySelector(".main1");
+  BodyDiv.innerHTML = "";
+
+  const lanesNiveis = `
+  <div class="criarQuizz criacaoTela2">
+  <h1>Crie suas perguntas</h1>
+  <div class="perguntas">
+  <div class="teste">
+  <span>Nivel 1</span>
+  <ion-icon name="create-outline" onclick="editarNiveis()"></ion-icon>
+  </div>
+  `
+    BodyDiv.innerHTML = lanesNiveis;
+  
+  }
+
+  function editarNiveis () {
+    const BodyDiv = document.querySelector(".main1");
   BodyDiv.innerHTML = "";
 
     const criacaoNiveis = `
@@ -62,6 +97,7 @@ function criarNiveis() {
     </div> 
       `;
       BodyDiv.innerHTML = criacaoNiveis;
+
   }
 
   function finalizarQuizz() {
@@ -92,3 +128,4 @@ function criarNiveis() {
   function voltarHome () {
     window.location.reload()
   }
+

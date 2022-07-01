@@ -227,9 +227,24 @@ h3{
         font-weight: bold;
         padding: 10px;
         width: 550px;
-    
+        
     }
+.perguntas .teste {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    width: 550px;
+    
+    width: 550px;
+    display: flex;
+    align-items: space-between;
+    justify-content: center;
+}
 
+.perguntas ion-icon {
+    font-size: 30px;
+}
     .criarQuizz img {
         width: 500px;
         height: 266px;
