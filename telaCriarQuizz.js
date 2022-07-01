@@ -14,14 +14,14 @@ function criarQuizz() {
   </div> 
     `;
     BodyDiv.innerHTML = criacaoQuizz;
-    console.log(document.querySelector(".esqueletoQuizz :nth-child(4)"))
 }
 
+
 function validacaoBasica() {
-  const titulo = document.querySelector(".esqueletoQuizz :nth-child(1)");
-  const urlImagem = document.querySelector(".esqueletoQuizz :nth-child(2)");
-  const qntPerguntas = document.querySelector(".esqueletoQuizz :nth-child(3)");
-  const qntNiveis = document.querySelector(".esqueletoQuizz :nth-child(4)");
+const titulo = document.querySelector(".esqueletoQuizz :nth-child(1)");
+const urlImagem = document.querySelector(".esqueletoQuizz :nth-child(2)");
+const qntPerguntas = document.querySelector(".esqueletoQuizz :nth-child(3)");
+const qntNiveis = document.querySelector(".esqueletoQuizz :nth-child(4)");
 
   if (titulo.value.length < 20 || titulo.value.length > 65 || qntPerguntas.value < 3 || qntNiveis.value < 2)
     {
@@ -32,30 +32,30 @@ function validacaoBasica() {
   
 
 function criarPerguntas() {
+  const qntPerguntas = document.querySelector(".esqueletoQuizz :nth-child(3)");
+  const numPerguntas = qntPerguntas.value;
+  console.log(numPerguntas)
   const BodyDiv = document.querySelector(".main1");
-  BodyDiv.innerHTML = "";
-
-  const lanesPerguntas = `
-  <div class="criarQuizz criacaoTela2">
-  <h1>Crie suas perguntas</h1>
+  BodyDiv.innerHTML = `<div class="criarQuizz criacaoTela2">
+  <h1>Crie suas perguntas</h1>`;
+  
+  for (let i = 1; i <= qntPerguntas.value; i++) {
+    const lanesPerguntas = `
   <div class="perguntas">
   <div class="teste">
-  <span>Pergunta 1</span>
-  <ion-icon name="create-outline" onclick="editarPerguntas()"></ion-icon>
+  <span>Pergunta ${i}</span>
+  <ion-icon name="create-outline" onclick="editarPerguntas(this)"></ion-icon>
   </div>
   `
-    BodyDiv.innerHTML = lanesPerguntas;
+    BodyDiv.querySelector(".criarQuizz").innerHTML += lanesPerguntas;
+  }
   }
 
 
-function editarPerguntas() {
-  const BodyDiv = document.querySelector(".main1");
-  BodyDiv.innerHTML = "";
-  const criacaoPerguntas = `
-  <div class="criarQuizz criacaoTela2">
-  <h1>Crie suas perguntas</h1>
-  <div class="perguntas">
-  <span>Pergunta 1</span>
+function editarPerguntas(elemento) {
+  elemento.classList.add("escondido");
+  const classeAcima = elemento.parentNode.parentNode
+  classeAcima.innerHTML += `
   <input type="text" placeholder="Texto da pergunta" />
   <input type="text" placeholder="Cor de fundo da pergunta" />
   <span>Resposta correta</span>
@@ -69,10 +69,7 @@ function editarPerguntas() {
   <input type="text" placeholder="Resposta incorreta 3" />
   <input type="url" placeholder="URL da imagem 3" />
   </div>
-  <div class="prosseguir" onclick="criarNiveis()">Prosseguir para criar níveis</div>
-  </div> 
     `;
-    BodyDiv.innerHTML = criacaoPerguntas;
 }
 
 function criarNiveis() {
