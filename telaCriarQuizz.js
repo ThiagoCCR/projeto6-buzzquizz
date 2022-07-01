@@ -1,3 +1,4 @@
+//para criar o quizz
 function criarQuizz() {
   const BodyDiv = document.querySelector(".main1");
   BodyDiv.innerHTML = "";
@@ -16,7 +17,7 @@ function criarQuizz() {
     BodyDiv.innerHTML = criacaoQuizz;
 }
 
-
+//para validar as infos basicas do quizz
 function validacaoBasica() {
 const titulo = document.querySelector(".esqueletoQuizz :nth-child(1)");
 const urlImagem = document.querySelector(".esqueletoQuizz :nth-child(2)");
@@ -25,16 +26,15 @@ const qntNiveis = document.querySelector(".esqueletoQuizz :nth-child(4)");
 
   if (titulo.value.length < 20 || titulo.value.length > 65 || qntPerguntas.value < 3 || qntNiveis.value < 2)
     {
+      alert ("Preencha os dados corretamente")
    return;
   } 
   criarPerguntas();
 }
   
-
+//para criar  as perguntas
 function criarPerguntas() {
   const qntPerguntas = document.querySelector(".esqueletoQuizz :nth-child(3)");
-  const numPerguntas = qntPerguntas.value;
-  console.log(numPerguntas)
   const BodyDiv = document.querySelector(".main1");
   BodyDiv.innerHTML = `<div class="criarQuizz criacaoTela2">
   <h1>Crie suas perguntas</h1>`;
@@ -49,13 +49,16 @@ function criarPerguntas() {
   `
     BodyDiv.querySelector(".criarQuizz").innerHTML += lanesPerguntas;
   }
+  BodyDiv.querySelector(".criarQuizz").innerHTML += `<div class="prosseguir" onclick="validacaoPerguntas()">Prosseguir para criar níveis</div>
+  </div>`
   }
 
-
+//para abrir as perguntas
 function editarPerguntas(elemento) {
   elemento.classList.add("escondido");
   const classeAcima = elemento.parentNode.parentNode
   classeAcima.innerHTML += `
+  <div class="perguntasDetalhadas">
   <input type="text" placeholder="Texto da pergunta" />
   <input type="text" placeholder="Cor de fundo da pergunta" />
   <span>Resposta correta</span>
@@ -69,34 +72,71 @@ function editarPerguntas(elemento) {
   <input type="text" placeholder="Resposta incorreta 3" />
   <input type="url" placeholder="URL da imagem 3" />
   </div>
+  </div>
     `;
 }
 
-function criarNiveis() {
-  const BodyDiv = document.querySelector(".main1");
-  BodyDiv.innerHTML = "";
+function validacaoPerguntas() {
+  const textoPergunta = document.querySelector(".perguntasDetalhadas :nth-child(1)")
+  const corPergunta = document.querySelector(".perguntasDetalhadas :nth-child(2)")
+  const respostaCorreta = document.querySelector(".perguntasDetalhadas :nth-child(4)");
+  const imgRespostaCorreta = document.querySelector(".perguntasDetalhadas :nth-child(5)");
+  const respostaIncorreta1 = document.querySelector(".perguntasDetalhadas :nth-child(7)");
+  const imgRespostaIncorreta1 = document.querySelector(".perguntasDetalhadas :nth-child(8)");
+  const respostaIncorreta2 = document.querySelector(".perguntasDetalhadas :nth-child(9)");
+  const imgRespostaIncorreta2 = document.querySelector(".perguntasDetalhadas :nth-child(10)");
+  const respostaIncorreta3 = document.querySelector(".perguntasDetalhadas :nth-child(11)");
+  const imgRespostaIncorreta3 = document.querySelector(".perguntasDetalhadas :nth-child(12)");
 
-  const lanesNiveis = `
-  <div class="criarQuizz criacaoTela2">
-  <h1>Crie suas perguntas</h1>
-  <div class="perguntas">
-  <div class="teste">
-  <span>Nivel 1</span>
-  <ion-icon name="create-outline" onclick="editarNiveis()"></ion-icon>
-  </div>
+  if (textoPergunta.value.length < 20)
+    {
+      alert ("Preencha os dados corretamente")
+   return;
+  } 
+
+
+  if (respostaCorreta.value !== null)
+  {
+    alert ("Preencha os dados corretamente")
+ return;
+} 
+
+if (respostaIncorreta1.value !== null && respostaIncorreta2.value !== null && respostaIncorreta3.value !== null )
+  {
+    alert ("Preencha os dados corretamente")
+ return;
+} 
+
+  criarNiveis();
+}
+
+
+function criarNiveis() {
+  const qntPerguntas = document.querySelector(".esqueletoQuizz :nth-child(4)");
+  const BodyDiv = document.querySelector(".main1");
+  BodyDiv.innerHTML = `<div class="criarQuizz criacaoTela3">
+  <h1>Crie seus niveis</h1>`;
+  
+  for (let i = 1; i <= qntPerguntas.value; i++) {
+    const lanesNiveis = `
+    <div class="niveis">
+    <div class="teste">
+    <span>Nivel ${i}</span>
+    <ion-icon name="create-outline" onclick="editarNiveis(this)"></ion-icon>
+    </div>
   `
-    BodyDiv.innerHTML = lanesNiveis;
+    BodyDiv.querySelector(".criarQuizz").innerHTML += lanesNiveis;
+  }
+  BodyDiv.querySelector(".criarQuizz").innerHTML += `<div class="prosseguir" onclick="validacaoNiveis()">Finalizar Quizz</div>
+  </div>`
   }
 
-  function editarNiveis () {
-    const BodyDiv = document.querySelector(".main1");
-  BodyDiv.innerHTML = "";
-
-    const criacaoNiveis = `
-    <div class="criarQuizz criacaoTela3">
-    <h1>Agora, crie níveis</h1>
-    <div class="niveis">
-    <span>Nivel 1</span>
+ 
+  function editarNiveis (elemento) {
+  elemento.classList.add("escondido");
+  const classeAcima = elemento.parentNode.parentNode
+  classeAcima.innerHTML +=  `
+  <div class="niveisDetalhados">
     <input type="text" placeholder="Título do nível" />
     <input type="number" placeholder="% acerto mínima" />
     <input type="url" placeholder="URL da imagem do nível" />
@@ -104,8 +144,32 @@ function criarNiveis() {
     </div>
     <div class="prosseguir" onclick="finalizarQuizz()">Finalizar Quizz</div>
     </div> 
+    </div> 
       `;
-      BodyDiv.innerHTML = criacaoNiveis;
+  }
+
+  function validacaoNiveis() {
+    const tituloNivel = document.querySelector(".niveisDetalhados ::nth-child(1)");
+    const qntAcertos = document.querySelector(".niveisDetalhados ::nth-child(2)");
+    const urlImagemNivel = document.querySelector(".niveisDetalhados ::nth-child(3)");
+    const descricaoNivel = document.querySelector(".niveisDetalhados ::nth-child(4)");
+
+    if (tituloNivel.value.length < 10) {
+    alert ("Preencha os dados corretamente")
+    return;
+    }
+
+    if (qntAcertos.value < 0 || qntAcertos.value > 100) {
+      alert ("Preencha os dados corretamente")
+      return;
+      }
+
+      if (descricaoNivel.value.length < 30) {
+        alert ("Preencha os dados corretamente")
+        return;
+        }
+    
+    finalizarQuizz()
   }
 
   function finalizarQuizz() {
