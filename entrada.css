@@ -6,6 +6,7 @@
 
 body{
     background-color: #FAFAFA;
+    font-family: 'Roboto', sans-serif; /*coloquei aqui pq assim toda a pagina fica com essa familia!*/
 }
 
 .main{
@@ -160,6 +161,91 @@ h3{
     max-width: 1051px;
 }
 
+/* CRIAR QUIZZ */
+.criarQuizz {
+    margin: 0 auto;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+}
+
+.criarQuizz h1 {
+    color: black;
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+
+
+.esqueletoQuizz, .perguntas, .niveis {
+    background-color: #FFFFFF;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 60px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+    .criarQuizz input  {
+        border: 1px solid #D1D1D1;
+        border-radius: 5px;
+        background-color: #FFFFFF;
+        color: #BABABA;
+        width: 550px;
+        padding: 10px;
+        margin-bottom: 10px;
+        font-style: italic;
+        font-size: 19px;
+        }
+    
+    .criarQuizz ::placeholder {
+        color: #D1D1D1;
+    }
+
+    .prosseguir {
+    border-radius: 15px;
+    background-color: #EC362D;
+    color: #FFFFFF;
+    padding: 10px;
+    width: 300px;
+    font-weight: bold;
+    text-align: center;
+    font-family: Roboto;
+    margin-bottom: 20px;
+}
+
+    .criarQuizz span {
+        color: black;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 10px;
+        width: 550px;
+    
+    }
+
+    .criarQuizz img {
+        width: 500px;
+        height: 266px;
+        margin-bottom: 30px; 
+    }
+
+    .criacaoTela4 .prosseguir {
+        width: 200px;
+        font-size: 21px;
+    }
+
+    .criarQuizz h2 {
+        font-size: 21px;
+    }
+    
+.escondido {
+    display: none;
+}
 
 
 
