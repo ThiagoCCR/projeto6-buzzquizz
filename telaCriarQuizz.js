@@ -100,13 +100,46 @@ function validacaoPerguntas() {
   for (let i = 1; i <= qntPerguntas.value; i++) {
    tituloPergunta = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(1)`)
    corPergunta = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(2)`)
-   meuQuizz.questions.push( {
+   respCorreta = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(4)`)
+   imgRespCorreta = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(5)`)
+   respIncorreta1 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(7)`)
+   respIncorreta2 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(8)`)
+   respIncorreta3 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(9)`)
+   imgRespIncorreta1 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(10)`)
+   imgRespIncorreta2 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(11)`)
+   imgRespIncorreta3 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(12)`)
+    meuQuizz.questions.push( 
+    {
     title: tituloPergunta.value,
-    color: corPergunta.value
-})
+    color: corPergunta.value,
+    answer: [
+      {
+        text: respCorreta,
+        image: imgRespCorreta,
+        isCorrectAnswer: true,
+      },
+      {
+        text: respIncorreta1,
+        image: imgRespIncorreta1,
+        isCorrectAnswer: false,
+      },
+      {
+        text: respIncorreta2,
+        image: imgRespIncorreta2,
+        isCorrectAnswer: false,
+      },
+      {
+        text: respIncorreta3,
+        image: imgRespIncorreta1,
+        isCorrectAnswer: false,
+      }
+    ]
+    }
+    )
+  }
 console.log(meuQuizz)
   }
-}
+
  
 
 
