@@ -8,8 +8,8 @@ function criarQuizz() {
   <div class="esqueletoQuizz">
   <input type="text" placeholder="Título do seu quizz" />
   <input type="url" placeholder="URL da imagem do seu quizz" />
-  <input type="number" placeholder="Quantidade de perguntas do quizz" />
-  <input type="number" placeholder="Quantidade de níveis do quizz" />
+  <input type="number" placeholder="Quantidade de perguntas do quizz" min="3"/>
+  <input type="number" placeholder="Quantidade de níveis do quizz" min="2"/>
   </div>
   <div class="prosseguir" onclick="validacaoBasica()">Prosseguir para criar perguntas</div>
   </div> 
@@ -70,10 +70,10 @@ function editarPerguntas(elemento) {
   <div class="perguntasDetalhadas">
   <input type="text" placeholder="Texto da pergunta" />
   <input type="text" placeholder="Cor de fundo da pergunta" />
-  <span>Resposta correta</span>
+ <div class="teste"><span>Resposta correta</span></div>
   <input type="text" placeholder="Resposta correta" />
   <input type="url" placeholder="URL da imagem" />
-  <span>Respostas incorretas</span>
+  <div class="teste"><span>Respostas incorretas</span></div> 
   <input type="text" placeholder="Resposta incorreta 1" />
   <input type="url" placeholder="URL da imagem 1" />
   <input type="text" placeholder="Resposta incorreta 2" />
@@ -85,34 +85,43 @@ function editarPerguntas(elemento) {
     `;
 }
 
-function validacaoPerguntas() {
-  let divPergunta = document.querySelector(".perguntas COLOCAR AQUI A CLASSE COM O NUM DA PERGUNTA");
-  const textoPergunta = divPergunta.querySelector(".perguntasDetalhadas :nth-child(1)");
-  const corPergunta = divPergunta.querySelector(".perguntasDetalhadas :nth-child(2)");
-  const respostaCorreta = divPergunta.querySelector(".perguntasDetalhadas :nth-child(4)");
-  const imgRespostaCorreta = divPergunta.querySelector(".perguntasDetalhadas :nth-child(5)");
-  const respostaIncorreta1 = divPergunta.querySelector(".perguntasDetalhadas :nth-child(7)");
-  const imgRespostaIncorreta1 = divPergunta.querySelector(".perguntasDetalhadas :nth-child(8)");
-  const respostaIncorreta2 = divPergunta.querySelector(".perguntasDetalhadas :nth-child(9)");
-  const imgRespostaIncorreta2 = divPergunta.querySelector(".perguntasDetalhadas :nth-child(10)");
-  const respostaIncorreta3 = divPergunta.querySelector(".perguntasDetalhadas :nth-child(11)");
-  const imgRespostaIncorreta3 = divPergunta.querySelector(".perguntasDetalhadas :nth-child(12)");
 
-  for (let i = 0; i <= qntPerguntas.value; i++) {
-    if (textoPergunta.value.length < 20 || respostaCorreta.value === null) {
-      alert("Preencha os dados corretamente");
-      return;
-    }
-    if (
-      respostaIncorreta1.value === null &&
-      respostaIncorreta2.value === null &&
-      respostaIncorreta3.value === null
-    ) {
-      alert("Preencha os dados corretamente");
-      return;
-    }
+let conjtextoPergunta = [];
+let conjcorPergunta = [];
+let conjrespCorreta = [];
+let conjimgRespCorreta = [];
+let conjrespIncorreta1 = [];
+let conjrespIncorreta2 = [];
+let conjrespIncorreta3 = [];
+let conjimgRespIncorreta1 = [];
+let conjimgRespIncorreta2 = [];
+let conjimgRespIncorreta3 = [];
+
+function validacaoPerguntas() {
+  console.log(qntPerguntas.value);
+  for (let i = 1; i <= qntPerguntas.value; i++) {
+   let textoPergunta = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(1)")`
+   conjtextoPergunta.push(textoPergunta)
+   let corPergunta = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(2)")`
+   conjcorPergunta.push(corPergunta)
+   let  respCorreta = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(4)")`
+   conjrespCorreta.push(respCorreta)
+   let  imgRespCorreta = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(5)")`
+   conjimgRespCorreta.push(imgRespCorreta)
+   let  respIncorreta1 = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(7)")`
+   conjrespIncorreta1.push(respIncorreta1)
+   let respIncorreta2 = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(8)")`
+   conjrespIncorreta2.push(respIncorreta2)
+   let respIncorreta3 = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(9)")`
+   conjrespIncorreta3.push(respIncorreta3)
+   let imgRespIncorreta1 = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(10)")`
+   imgRespIncorreta1.push(imgRespIncorreta1)
+   let imgRespIncorreta2 = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(11)")`
+   imgRespIncorreta2.push(imgRespIncorreta2)
+   let imgRespIncorreta3 = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(12)")`
+   imgRespIncorreta3.push(imgRespIncorreta3)
   }
-  criarNiveis();
+  console.log(conjimgRespCorreta)
 }
 
 
