@@ -65,33 +65,35 @@ function renderizarQuestoes3() {
     const caixaQuestaoDiv = document.querySelector('.questoes-container3');
     const numQuestoes = objQuizz3.questions.length;
 
+
     for (let i = 0; i < numQuestoes; i++) {
+        const questao = objQuizz3.questions[i];
+        const numRespostas = questao.answers.length;
+        let templateRepostas = "";
+        
+        for (let y = 0; y < numRespostas; y++) {
+            templateRepostas += `
+            <div>
+                <div class="resposta-img3">
+                    <img src=${questao.answers[y].image}>
+                </div>
+                <div class="resposta-texto3">
+                    <p>${questao.answers[y].text}</p>
+                </div>
+            </div>`
+        }
+
         let templateQuestaoBox = `
                 <div class="caixa-questao3">
                     <div class="titulo-pergunta-3">
                         <p>${objQuizz3.questions[i].title}</p>
                     </div>
-                    <div class="respostas3"></div>
+                    <div class="respostas3">${templateRepostas}</div>
                 </div>`
 
         caixaQuestaoDiv.innerHTML += templateQuestaoBox;
 
-        const questao = objQuizz3.questions[i];
-        const numRespostas = questao.answers.length;
-        const respostasDiv = document.querySelector();
-        // console.log(respostasDiv)
-
-        // for (let y = 0; y < numRespostas; y++) {
-        //     respostasDiv.innerHtml += `
-        //     <div>
-        //         <div class="resposta-img3">
-        //             <img src=${objQuizz3.questions[y].image}>
-        //         </div>
-        //         <div class="resposta-texto3">
-        //             <p>${objQuizz3.questions[y].text}</p>
-        //         </div>
-        //     </div>`
-        // }
+        
 
     }
 
