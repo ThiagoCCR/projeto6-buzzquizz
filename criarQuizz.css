@@ -28,7 +28,7 @@
     display:flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: space-around;
 }
 
     .criarQuizz input  {
@@ -69,7 +69,7 @@
     }
     
 
-    .perguntas .teste {
+    .perguntas .teste, .niveis .teste {
         color: black;
         font-size: 20px;
         font-weight: bold;
@@ -80,7 +80,7 @@
         justify-content: center;
     }
 
-.perguntas ion-icon {
+.perguntas ion-icon, .niveis ion-icon {
     font-size: 30px;
 }
     .criarQuizz img {

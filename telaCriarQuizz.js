@@ -93,8 +93,39 @@ function editarPerguntas(elemento) {
 }
 
 let tituloPergunta;
-
 function validacaoPerguntas() {
+criarObjetoPerguntas();
+verificarPerguntas();
+criarNiveis();
+}
+
+
+    let respostaCorreta; 
+    let respostaIncorreta1; 
+    let respostaIncorreta2; 
+    let respostaIncorreta3; 
+function verificarPerguntas() {
+  for (let i = 0; i <= qntPerguntas.value; i++) {
+    perguntaAtual = meuQuizz.questions[i]
+    respostaCorreta = perguntaAtual.answers[0].text
+    respostaIncorreta1 = perguntaAtual.answers[1].text
+    respostaIncorreta2 = perguntaAtual.answers[2].text
+    respostaIncorreta3 = perguntaAtual.answers[3].text
+    
+    if (perguntaAtual.title.length < 20) {
+      alert("Preencha os dados corretamente");
+    }
+    if (respostaCorreta === null) {
+      alert("Preencha os dados corretamente");
+    }
+
+    if (respostaCorreta === null && (respostaIncorreta1 === null || respostaIncorreta2 === null || respostaIncorreta3 === null)) {
+      alert("Preencha os dados corretamente");
+    }
+  }
+}
+
+function criarObjetoPerguntas() {
   console.log(qntPerguntas.value);
   meuQuizz.questions = [];
   for (let i = 1; i <= qntPerguntas.value; i++) {
@@ -112,7 +143,7 @@ function validacaoPerguntas() {
     {
     title: tituloPergunta.value,
     color: corPergunta.value,
-    answer: [
+    answers: [
       {
         text: respCorreta,
         image: imgRespCorreta,
@@ -140,18 +171,16 @@ function validacaoPerguntas() {
 console.log(meuQuizz)
   }
 
- 
-
 
 function criarNiveis() {
-  const qntPerguntas = document.querySelector(".esqueletoQuizz :nth-child(4)");
   const BodyDiv = document.querySelector(".main1");
+  BodyDiv.innerHTML = "";
   BodyDiv.innerHTML = `<div class="criarQuizz criacaoTela3">
-  <h1>Crie seus niveis</h1>`;
+  <h1>Crie seus níveis</h1>`;
 
-  for (let i = 1; i <= qntPerguntas.value; i++) {
+  for (let i = 1; i <= qntNiveis.value; i++) {
     const lanesNiveis = `
-    <div class="niveis">
+    <div class="niveis num${i}">
     <div class="teste">
     <span>Nivel ${i}</span>
     <ion-icon name="create-outline" onclick="editarNiveis(this)"></ion-icon>
@@ -162,8 +191,9 @@ function criarNiveis() {
   BodyDiv.querySelector(
     ".criarQuizz"
   ).innerHTML += `<div class="prosseguir" onclick="validacaoNiveis()">Finalizar Quizz</div>
-  </div>`;
-}
+  </div>`; 
+  }
+  
 
 function editarNiveis(elemento) {
   elemento.classList.add("escondido");
@@ -175,9 +205,6 @@ function editarNiveis(elemento) {
     <input type="url" placeholder="URL da imagem do nível" />
     <input type="text" placeholder="Descrição do nível" />
     </div>
-    <div class="prosseguir" onclick="finalizarQuizz()">Finalizar Quizz</div>
-    </div> 
-    </div> 
       `;
 }
 
