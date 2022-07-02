@@ -122,7 +122,5 @@ function abrirQuizz1(id){
 function criarQuizz1() {
     const BodyDiv = document.querySelector(".main1");
     BodyDiv.innerHTML = "";
-      criarQuizz();
-      //BodyDiv.innerHTML = "";
-      //CHAMAR FUNÇÃO QUE APARECE A TELA DE CRIAR QUIZZ: PENDING!
+    criarQuizz();
     }

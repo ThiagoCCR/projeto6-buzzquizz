@@ -17,6 +17,9 @@ function criarQuizz() {
   BodyDiv.innerHTML = criacaoQuizz;
 }
 
+//criando o objeto 
+const meuQuizz = {};
+
 //para validar as infos basicas do quizz
 let titulo;
 let urlImagem;
@@ -35,7 +38,11 @@ function validacaoBasica() {
   ) {
     alert("Preencha os dados corretamente");
     return;
-  }
+  } 
+  
+  meuQuizz.title = titulo.value;
+  meuQuizz.image = urlImagem.value;
+  console.log(meuQuizz)
   criarPerguntas();
 }
 
@@ -68,7 +75,7 @@ function editarPerguntas(elemento) {
   const classeAcima = elemento.parentNode.parentNode;
   classeAcima.innerHTML += `
   <div class="perguntasDetalhadas">
-  <input type="text" placeholder="Texto da pergunta" />
+  <input type="text" placeholder="Título da pergunta" />
   <input type="text" placeholder="Cor de fundo da pergunta" />
  <div class="teste"><span>Resposta correta</span></div>
   <input type="text" placeholder="Resposta correta" />
@@ -85,44 +92,22 @@ function editarPerguntas(elemento) {
     `;
 }
 
-
-let conjtextoPergunta = [];
-let conjcorPergunta = [];
-let conjrespCorreta = [];
-let conjimgRespCorreta = [];
-let conjrespIncorreta1 = [];
-let conjrespIncorreta2 = [];
-let conjrespIncorreta3 = [];
-let conjimgRespIncorreta1 = [];
-let conjimgRespIncorreta2 = [];
-let conjimgRespIncorreta3 = [];
+let tituloPergunta;
 
 function validacaoPerguntas() {
   console.log(qntPerguntas.value);
+  meuQuizz.questions = [];
   for (let i = 1; i <= qntPerguntas.value; i++) {
-   let textoPergunta = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(1)")`
-   conjtextoPergunta.push(textoPergunta)
-   let corPergunta = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(2)")`
-   conjcorPergunta.push(corPergunta)
-   let  respCorreta = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(4)")`
-   conjrespCorreta.push(respCorreta)
-   let  imgRespCorreta = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(5)")`
-   conjimgRespCorreta.push(imgRespCorreta)
-   let  respIncorreta1 = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(7)")`
-   conjrespIncorreta1.push(respIncorreta1)
-   let respIncorreta2 = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(8)")`
-   conjrespIncorreta2.push(respIncorreta2)
-   let respIncorreta3 = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(9)")`
-   conjrespIncorreta3.push(respIncorreta3)
-   let imgRespIncorreta1 = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(10)")`
-   imgRespIncorreta1.push(imgRespIncorreta1)
-   let imgRespIncorreta2 = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(11)")`
-   imgRespIncorreta2.push(imgRespIncorreta2)
-   let imgRespIncorreta3 = `document.querySelector(".num${i} .perguntasDetalhadas :nth-child(12)")`
-   imgRespIncorreta3.push(imgRespIncorreta3)
+   tituloPergunta = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(1)`)
+   corPergunta = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(2)`)
+   meuQuizz.questions.push( {
+    title: tituloPergunta.value,
+    color: corPergunta.value
+})
+console.log(meuQuizz)
   }
-  console.log(conjimgRespCorreta)
 }
+ 
 
 
 function criarNiveis() {
