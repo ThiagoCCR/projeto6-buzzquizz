@@ -215,11 +215,12 @@ let urlImagemNivel;
 let descricaoNivel;
 function validacaoNiveis() {
   criarObjetoNiveis();
+  verificarNiveis();
 }
 
 function criarObjetoNiveis() {
   meuQuizz.levels = [];
-  for (let i = 1; i <= qntPerguntas.value - 1; i++) {
+  for (let i = 1; i <= qntNiveis.value; i++) {
   tituloNivel = document.querySelector(`.num${i} .niveisDetalhados :nth-child(1)`);
   qntAcertos = document.querySelector(`.num${i} .niveisDetalhados :nth-child(2)`);
   urlImagemNivel = document.querySelector(`.num${i} .niveisDetalhados :nth-child(3)`);
@@ -236,21 +237,34 @@ function criarObjetoNiveis() {
   console.log(meuQuizz)
 }
 
+let nivelTitulo;
+let nivelImagem;
+let nivelTexto;
+let nivelAcertos;
+
 function verificarNiveis () {
-  if (tituloNivel.value.length < 10) {
+  for (let i = 0; i < qntNiveis.value; i++) {
+    let nivelaAtual = meuQuizz.levels[i]
+    nivelTitulo = nivelaAtual.title
+    nivelImagem = nivelaAtual.image
+    nivelTexto = nivelaAtual.text
+    nivelAcertos = nivelaAtual.minValue
+
+  if (nivelTitulo.length < 10) {
     alert("Preencha os dados corretamente");
     return;
   }
 
-  if (qntAcertos.value < 0 || qntAcertos.value > 100) {
+  if (nivelAcertos < 0 || nivelAcertos > 100) {
     alert("Preencha os dados corretamente");
     return;
   }
 
-  if (descricaoNivel.value.length < 30) {
+  if (nivelTexto.length < 30) {
     alert("Preencha os dados corretamente");
     return;
   }
+}
   finalizarQuizz();
 }
 
