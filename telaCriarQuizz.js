@@ -96,33 +96,6 @@ let tituloPergunta;
 function validacaoPerguntas() {
 criarObjetoPerguntas();
 verificarPerguntas();
-criarNiveis();
-}
-
-
-    let respostaCorreta; 
-    let respostaIncorreta1; 
-    let respostaIncorreta2; 
-    let respostaIncorreta3; 
-function verificarPerguntas() {
-  for (let i = 0; i <= qntPerguntas.value; i++) {
-    perguntaAtual = meuQuizz.questions[i]
-    respostaCorreta = perguntaAtual.answers[0].text
-    respostaIncorreta1 = perguntaAtual.answers[1].text
-    respostaIncorreta2 = perguntaAtual.answers[2].text
-    respostaIncorreta3 = perguntaAtual.answers[3].text
-    
-    if (perguntaAtual.title.length < 20) {
-      alert("Preencha os dados corretamente");
-    }
-    if (respostaCorreta === null) {
-      alert("Preencha os dados corretamente");
-    }
-
-    if (respostaCorreta === null && (respostaIncorreta1 === null || respostaIncorreta2 === null || respostaIncorreta3 === null)) {
-      alert("Preencha os dados corretamente");
-    }
-  }
 }
 
 function criarObjetoPerguntas() {
@@ -170,6 +143,37 @@ function criarObjetoPerguntas() {
   }
 console.log(meuQuizz)
   }
+
+    let respostaCorreta; 
+    let respostaIncorreta1; 
+    let respostaIncorreta2; 
+    let respostaIncorreta3; 
+function verificarPerguntas() {
+  for (let i = 0; i < qntPerguntas.value; i++) {
+    perguntaAtual = meuQuizz.questions[i]
+    respostaCorreta = perguntaAtual.answers[0].text
+    respostaIncorreta1 = perguntaAtual.answers[1].text
+    respostaIncorreta2 = perguntaAtual.answers[2].text
+    respostaIncorreta3 = perguntaAtual.answers[3].text
+    
+    if (perguntaAtual.title.length < 20) {
+      alert("Preencha os dados corretamente");
+      return;
+    }
+    if (respostaCorreta === null) {
+      alert("Preencha os dados corretamente");
+      return;
+    }
+
+    if (respostaCorreta === null && (respostaIncorreta1 === null || respostaIncorreta2 === null || respostaIncorreta3 === null)) {
+      alert("Preencha os dados corretamente");
+      return;
+    }
+  }
+  criarNiveis();
+}
+
+
 
 
 function criarNiveis() {
