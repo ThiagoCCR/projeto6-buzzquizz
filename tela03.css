@@ -84,6 +84,7 @@
     position: relative;
     width: 330px;
     height: 175px;
+    margin-bottom: 20px;
 }
 
 .respostas3 img{
@@ -115,6 +116,7 @@
 }
 
 
+
 /* TELA DE RESULTADO */
 
 .resultado{
@@ -138,6 +140,7 @@
 .resultado-texto{
     max-width: 350px;
     max-height: 100%;
+    padding: 10px;
 }
 
 .resultado-texto p{
@@ -147,6 +150,36 @@
     color: #000000;
     line-height: 25px;
 }
+
+
+.reiniciar-quizz{
+    margin-top: 60px;
+    margin-bottom: 20px;
+    width: 260px;
+    height: 50px;
+    background-color: #EC362D;
+    color: #FFF5F4;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 21px;
+    border-radius: 20px;
+    border: none;
+}
+
+.voltar-home{
+    width: 260px;
+    height: 50px;
+    background-color: #E5E5E5;
+    color: #818181;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 21px;
+    border-radius: 20px;
+    border: none;
+}
+
+
+
 
 /* mudar cor usando js */
 

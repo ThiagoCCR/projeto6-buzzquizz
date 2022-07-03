@@ -211,7 +211,29 @@ function mostrarResultado(resultado) {
                     <p>${nivel.text}</p>
                 </div>
             </div> 
-        </div>`
+        </div>
+        <button class="reiniciar-quizz" onclick="reiniciarQuizz()">Reiniciar Quizz</button>
+        <button class="voltar-home" onclick="voltarHome()">Voltar pra Home</button>`
 
     questaoContainerDiv.innerHTML += templateResultado;
+
+    setTimeout(() => {
+        let divResultado = document.querySelector('.questoes-container3').lastElementChild;
+        if (divResultado !== null) {
+            divResultado.scrollIntoView({ behavior: 'auto', block: 'center', inline: 'center' });
+        }
+
+    }, 2000)
+}
+
+function voltarHome(){
+    window.location.reload();
+}
+
+function reiniciarQuizz(){
+    const BodyDiv = document.querySelector('body');
+    BodyDiv.innerHTML = "";
+    numQuestaoClicadas = 0;
+    numQuestaoAcertadas = 0;
+    renderizarTela03();
 }
