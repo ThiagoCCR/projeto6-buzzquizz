@@ -39,7 +39,7 @@ function validacaoBasica() {
     alert("Preencha os dados corretamente");
     return;
   } 
-  
+
   meuQuizz.title = titulo.value;
   meuQuizz.image = urlImagem.value;
   console.log(meuQuizz)
@@ -269,6 +269,7 @@ function verificarNiveis () {
 }
 
 function finalizarQuizz() {
+  salvarQuizz();
   const BodyDiv = document.querySelector(".main1");
   BodyDiv.innerHTML = "";
 
@@ -276,8 +277,8 @@ function finalizarQuizz() {
     <div class="criarQuizz criacaotela4">
     <h1>Seu quizz está pronto!</h1>
     <div class="quizzCriado">
-    <img src="img/Rectangle 36.png"/>
-    
+    <img src="${meuQuizz.image}"/>
+    <div class="tituloTelaFinal">${meuQuizz.title}</div>
     </div>
     <div class="prosseguir" onclick="acessarQuizz()">Acessar Quizz</div>
     <h2 onclick="voltarHome()">Voltar para home </h2>
@@ -287,7 +288,30 @@ function finalizarQuizz() {
   BodyDiv.innerHTML = novoQuizz;
 }
 
-function acessarQuizz() {}
+function salvarQuizz () {
+  const promise = axios.post ("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", meuQuizz);
+  promise.then(devolveQuizzCompleto);
+  promise.catch(retornaErro); 
+}
+
+function devolveQuizzCompleto(resposta) {
+  const idQuizz = resposta.id
+  console.log(resposta.id)
+  const promise = axios.get (`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/idQuizz`)
+
+  //salvando no localStorage
+  const idQuizzSerializado = JSON.stringify(idQuizz);
+  localStorage.setItem("id", idQuizzSerializado);
+  renderizarMeuQuizz()
+}
+
+function renderizarMeuQuizz () {
+  console.log("vai renderizar")
+}
+
+function retornaErro() {
+  console.log("deu erro")
+}
 
 function voltarHome() {
   window.location.reload();

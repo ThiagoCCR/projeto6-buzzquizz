@@ -87,6 +87,7 @@
         width: 500px;
         height: 266px;
         margin-bottom: 30px; 
+        position: relative;
     }
 
     .criacaoTela4 .prosseguir {
@@ -98,6 +99,15 @@
         font-size: 21px;
     }
     
+    .tituloTelaFinal {
+        font-size: 23px;
+        color: #FFFFFF;
+        position: absolute;
+        top: 360px;
+        left: 140px;
+        word-wrap: break-word;
+        width: 60%;
+    }
    
 .escondido {
     display: none;
