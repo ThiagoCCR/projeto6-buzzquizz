@@ -1,12 +1,14 @@
 let idQuizz3;
 let objQuizz3;
+let numQuestaoClicadas = 0;
+let numQuestaoAcertadas = 0;
 
-
+//chamada para identificar qual quizz foi selecionado
 function renderizarTela03(element) {
     encontrarQuizz3();
 }
 
-
+//comparação feita pelo id da API
 function encontrarQuizz3() {
     for (let i = 0; i < listaQuizz1.length; i++) {
         let quizzIterado = listaQuizz1[i];
@@ -14,12 +16,11 @@ function encontrarQuizz3() {
             objQuizz3 = quizzIterado;
         }
     }
-    console.log(objQuizz3)
 
     pegarQuizzSelecionadoAPI3();
 }
 
-
+//chamando quizz na API
 function pegarQuizzSelecionadoAPI3() {
     const promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${idQuizz3}`);
     promise.catch(erroAoPegarQuizz3);
@@ -32,7 +33,7 @@ function erroAoPegarQuizz3() {
     window.location.reload();
 }
 
-
+//popular o DOM com o cabeçalho
 function renderizarTela3(elemento) {
     const templateTela3 = `
     <div class="header">
@@ -53,14 +54,12 @@ function renderizarTela3(elemento) {
     renderizarQuestoes3();
 }
 
-
+//popular o DOM com as questões
 function renderizarQuestoes3() {
 
     const bodyDiv = document.querySelector('body');
     const templateQuestoes = `
-        <div class="questoes-container3">
-           
-        </div>`;
+        <div class="questoes-container3"></div>`;
     bodyDiv.innerHTML += templateQuestoes;
     const caixaQuestaoDiv = document.querySelector('.questoes-container3');
     const numQuestoes = objQuizz3.questions.length;
@@ -71,7 +70,7 @@ function renderizarQuestoes3() {
         const numRespostas = questao.answers.length;
         let templateRepostas = "";
         const questoesRandom = [...questao.answers].sort(randomizarQuestoes);
-        
+
         for (let y = 0; y < numRespostas; y++) {
             templateRepostas += `
             <div onclick="selecionarAlternativa(${questoesRandom[y].isCorrectAnswer}, this)">
@@ -98,31 +97,35 @@ function renderizarQuestoes3() {
 
 }
 
-function randomizarQuestoes(){
+//randomizar as questões mostradas
+function randomizarQuestoes() {
     return Math.random() - 0.5;
 }
 
+//mostrar quais as alternativas corretas e incorretas
+function selecionarAlternativa(booleano, element) {
 
-function selecionarAlternativa(booleano, element){
-
-    if (element.classList.contains('clicada')){
+    if (element.classList.contains('clicada')) {
         return;
     }
 
-    element.classList.add('clicada')
+    element.classList.add('clicada');
+    numQuestaoClicadas += 1;
 
     const alternativaCorreta = element.parentNode.querySelector('p.true');
     const alternativaIncorreta = element.parentNode.querySelectorAll('p.false');
 
     alternativaCorreta.classList.add('green');
 
-    for (let i=0; i< alternativaIncorreta.length; i++){
+    checarSeAcertou(booleano)
+
+    for (let i = 0; i < alternativaIncorreta.length; i++) {
         alternativaIncorreta[i].classList.add('red');
     }
 
     let siblings = getSiblings(element);
 
-    for (let i=0; i < siblings.length; i++){
+    for (let i = 0; i < siblings.length; i++) {
         siblings[i].querySelector('.box-opacity').classList.add('opaco');
         siblings[i].classList.add('clicada');
     }
@@ -130,16 +133,29 @@ function selecionarAlternativa(booleano, element){
 
     const proximaQuestao = element.parentNode.parentNode.nextElementSibling;
 
-    setTimeout(()=>{
-    
-        if (proximaQuestao !== null){
-            proximaQuestao.scrollIntoView({behavior:'auto', block:'center', inline:'center'});
+    setTimeout(() => {
+
+        if (proximaQuestao !== null) {
+            proximaQuestao.scrollIntoView({ behavior: 'auto', block: 'center', inline: 'center' });
         }
 
-    },2000)
+    }, 2000)
+
+    calcularResultadoQuizz();
 
 }
 
+//olhar se acertou a função
+function checarSeAcertou(booleano) {
+
+    if (booleano === true) {
+        numQuestaoAcertadas += 1;
+    }
+
+}
+
+
+//selecionar todas as divs irmãs da alternativa selecionada
 function getSiblings(elem) {
 
     // Setup siblings array and get the first sibling
@@ -156,4 +172,46 @@ function getSiblings(elem) {
 
     return siblings;
 
+}
+
+//calcular resultado
+function calcularResultadoQuizz() {
+    let valorQuestão = 100 / objQuizz3.questions.length;
+    let resultado = 0;
+
+    if (numQuestaoClicadas === objQuizz3.questions.length) {
+        resultado = Math.floor(valorQuestão * numQuestaoAcertadas);
+        mostrarResultado(resultado);
+    }
+
+}
+
+//renderiza tela de resultado no DOM
+function mostrarResultado(resultado) {
+    let nivel;
+
+    for (let i=0; i< objQuizz3.levels.length; i++){
+        if(resultado >= objQuizz3.levels[i].minValue){
+            nivel = objQuizz3.levels[i];
+            console.log(nivel)
+        }
+    }
+
+    const questaoContainerDiv = document.querySelector('.questoes-container3');
+    const templateResultado = `
+        <div class="caixa-questao3">
+            <div class="titulo-pergunta-3">
+                <p>${nivel.title}</p>
+            </div>
+            <div class="resultado">
+                <div class="resultado-img">
+                    <img src=${nivel.image}>
+                </div>
+                <div class="resultado-texto">
+                    <p>${nivel.text}</p>
+                </div>
+            </div> 
+        </div>`
+
+    questaoContainerDiv.innerHTML += templateResultado;
 }
