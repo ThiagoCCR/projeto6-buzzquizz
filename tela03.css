@@ -8,12 +8,15 @@
 .titulo-txt{
     height: 100%;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #FFFFFF;
     position: absolute;
     top:70px;
     left: 0;
     z-index: 1;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 40%, #000000 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 30%, #000000 100%);
 }
 
 .titulo3 img{
@@ -23,9 +26,9 @@
 }
 
 .titulo3 p{
-    position: absolute;
+    /* position: absolute;
     top:150px;
-    left: 50%;
+    left: 50%; */
     color: #FFFFFF;
     font-size: 39px;
 }
@@ -84,7 +87,7 @@
     position: relative;
     width: 330px;
     height: 175px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .respostas3 img{
