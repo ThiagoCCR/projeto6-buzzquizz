@@ -86,13 +86,15 @@ function renderizarQuestoes3() {
 
         let templateQuestaoBox = `
                 <div class="caixa-questao3">
-                    <div class="titulo-pergunta-3">
+                    <div class="titulo-pergunta-3" style="background-color:${objQuizz3.questions[i].color} !important">
                         <p>${objQuizz3.questions[i].title}</p>
                     </div>
                     <div class="respostas3">${templateRepostas}</div>
                 </div>`
 
         caixaQuestaoDiv.innerHTML += templateQuestaoBox;
+
+        //adicionar cor pergunta
     }
 
 }
@@ -158,11 +160,9 @@ function checarSeAcertou(booleano) {
 //selecionar todas as divs irmãs da alternativa selecionada
 function getSiblings(elem) {
 
-    // Setup siblings array and get the first sibling
     var siblings = [];
     var sibling = elem.parentNode.firstChild;
 
-    // Loop through each sibling and push to the array
     while (sibling) {
         if (sibling.nodeType === 1 && sibling !== elem) {
             siblings.push(sibling);
