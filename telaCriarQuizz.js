@@ -295,9 +295,9 @@ function salvarQuizz () {
 }
 
 function devolveQuizzCompleto(resposta) {
-  console.log("🚀 passa aqui por favor meu jesus ~ file: telaCriarQuizz.js ~ line 301 ~ devolveQuizzCompleto ~ resposta", resposta)
-  const dadosDeserializados = JSON.parse(resposta)
-  const promise = axios.get (`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${meuQuizz.id}`)
+  const idQuizz = resposta.id
+  console.log(resposta.id)
+  const promise = axios.get (`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/idQuizz`)
   renderizarMeuQuizz()
 }
 
