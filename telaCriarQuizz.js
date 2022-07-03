@@ -118,23 +118,23 @@ function criarObjetoPerguntas() {
     color: corPergunta.value,
     answers: [
       {
-        text: respCorreta,
-        image: imgRespCorreta,
+        text: respCorreta.value,
+        image: imgRespCorreta.value,
         isCorrectAnswer: true,
       },
       {
-        text: respIncorreta1,
-        image: imgRespIncorreta1,
+        text: respIncorreta1.value,
+        image: imgRespIncorreta1.value,
         isCorrectAnswer: false,
       },
       {
-        text: respIncorreta2,
-        image: imgRespIncorreta2,
+        text: respIncorreta2.value,
+        image: imgRespIncorreta2.value,
         isCorrectAnswer: false,
       },
       {
-        text: respIncorreta3,
-        image: imgRespIncorreta1,
+        text: respIncorreta3.value,
+        image: imgRespIncorreta1.value,
         isCorrectAnswer: false,
       }
     ]
@@ -173,9 +173,6 @@ function verificarPerguntas() {
   criarNiveis();
 }
 
-
-
-
 function criarNiveis() {
   const BodyDiv = document.querySelector(".main1");
   BodyDiv.innerHTML = "";
@@ -212,12 +209,34 @@ function editarNiveis(elemento) {
       `;
 }
 
+let tituloNivel;
+let qntAcertos;
+let urlImagemNivel;
+let descricaoNivel;
 function validacaoNiveis() {
-  const tituloNivel = document.querySelector(".niveisDetalhados ::nth-child(1)");
-  const qntAcertos = document.querySelector(".niveisDetalhados ::nth-child(2)");
-  const urlImagemNivel = document.querySelector(".niveisDetalhados ::nth-child(3)");
-  const descricaoNivel = document.querySelector(".niveisDetalhados ::nth-child(4)");
+  criarObjetoNiveis();
+}
 
+function criarObjetoNiveis() {
+  meuQuizz.levels = [];
+  for (let i = 1; i <= qntPerguntas.value - 1; i++) {
+  tituloNivel = document.querySelector(`.num${i} .niveisDetalhados :nth-child(1)`);
+  qntAcertos = document.querySelector(`.num${i} .niveisDetalhados :nth-child(2)`);
+  urlImagemNivel = document.querySelector(`.num${i} .niveisDetalhados :nth-child(3)`);
+  descricaoNivel = document.querySelector(`.num${i} .niveisDetalhados :nth-child(4)`);
+  meuQuizz.levels.push(
+      {
+        title: tituloNivel.value,
+        image: urlImagemNivel.value,
+        text: descricaoNivel.value,
+        minValue: qntAcertos.value
+      }
+  )
+  }
+  console.log(meuQuizz)
+}
+
+function verificarNiveis () {
   if (tituloNivel.value.length < 10) {
     alert("Preencha os dados corretamente");
     return;
@@ -232,7 +251,6 @@ function validacaoNiveis() {
     alert("Preencha os dados corretamente");
     return;
   }
-
   finalizarQuizz();
 }
 
