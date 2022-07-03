@@ -75,6 +75,7 @@
 
 .respostas3 > div{
     margin-top: 20px;
+    position: relative;
 }
 
 .respostas3 img{
@@ -90,3 +91,25 @@
     line-height: 25px;
 }
 
+.resposta-texto3{
+    max-width: 330px;
+}
+
+.opaco{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #FFFFFF;
+    opacity: 0.6;
+    width: 330px;
+    height: 175px;
+    z-index: 1;
+}
+
+.green{
+    color: #009C22 !important;
+}
+
+.red{
+    color: #FF0B0B !important;
+}
