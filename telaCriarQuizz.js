@@ -298,6 +298,10 @@ function devolveQuizzCompleto(resposta) {
   const idQuizz = resposta.id
   console.log(resposta.id)
   const promise = axios.get (`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/idQuizz`)
+
+  //salvando no localStorage
+  const idQuizzSerializado = JSON.stringify(idQuizz);
+  localStorage.setItem("id", idQuizzSerializado);
   renderizarMeuQuizz()
 }
 
