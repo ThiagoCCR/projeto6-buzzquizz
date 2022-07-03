@@ -276,10 +276,10 @@ function finalizarQuizz() {
     <div class="criarQuizz criacaotela4">
     <h1>Seu quizz está pronto!</h1>
     <div class="quizzCriado">
-    <img src="img/Rectangle 36.png"/>
-    
+    <img src="${meuQuizz.image}"/>
+    <div class="tituloTelaFinal">${meuQuizz.title}</div>
     </div>
-    <div class="prosseguir" onclick="acessarQuizz()">Acessar Quizz</div>
+    <div class="prosseguir" onclick="salvarQuizz()">Acessar Quizz</div>
     <h2 onclick="voltarHome()">Voltar para home </h2>
     </div> 
       `;
@@ -287,7 +287,16 @@ function finalizarQuizz() {
   BodyDiv.innerHTML = novoQuizz;
 }
 
-function acessarQuizz() {}
+function salvarQuizz () {
+  const promise = axios.post ("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", meuQuizz);
+  promise.then(acessarQuizz);
+  promise.catch(retornaErro); 
+}
+
+function acessarQuizz() {
+  const promise = axios.get ("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/ID_DO_QUIZZ", )
+
+}
 
 function voltarHome() {
   window.location.reload();
