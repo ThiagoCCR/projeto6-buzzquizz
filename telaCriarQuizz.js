@@ -39,7 +39,7 @@ function validacaoBasica() {
     alert("Preencha os dados corretamente");
     return;
   } 
-  
+
   meuQuizz.title = titulo.value;
   meuQuizz.image = urlImagem.value;
   console.log(meuQuizz)
@@ -269,6 +269,7 @@ function verificarNiveis () {
 }
 
 function finalizarQuizz() {
+  salvarQuizz();
   const BodyDiv = document.querySelector(".main1");
   BodyDiv.innerHTML = "";
 
@@ -279,7 +280,7 @@ function finalizarQuizz() {
     <img src="${meuQuizz.image}"/>
     <div class="tituloTelaFinal">${meuQuizz.title}</div>
     </div>
-    <div class="prosseguir" onclick="salvarQuizz()">Acessar Quizz</div>
+    <div class="prosseguir" onclick="acessarQuizz()">Acessar Quizz</div>
     <h2 onclick="voltarHome()">Voltar para home </h2>
     </div> 
       `;
@@ -289,13 +290,23 @@ function finalizarQuizz() {
 
 function salvarQuizz () {
   const promise = axios.post ("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", meuQuizz);
-  promise.then(acessarQuizz);
+  promise.then(devolveQuizzCompleto);
   promise.catch(retornaErro); 
 }
 
-function acessarQuizz() {
-  const promise = axios.get ("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/ID_DO_QUIZZ", )
+function devolveQuizzCompleto(resposta) {
+  console.log("🚀 passa aqui por favor meu jesus ~ file: telaCriarQuizz.js ~ line 301 ~ devolveQuizzCompleto ~ resposta", resposta)
+  const dadosDeserializados = JSON.parse(resposta)
+  const promise = axios.get (`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${meuQuizz.id}`)
+  renderizarMeuQuizz()
+}
 
+function renderizarMeuQuizz () {
+  console.log("vai renderizar")
+}
+
+function retornaErro() {
+  console.log("deu erro")
 }
 
 function voltarHome() {
