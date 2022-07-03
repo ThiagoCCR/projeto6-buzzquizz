@@ -2,7 +2,6 @@ let idQuizz3;
 let objQuizz3;
 
 
-
 function renderizarTela03(element) {
     encontrarQuizz3();
 }
@@ -30,7 +29,7 @@ function pegarQuizzSelecionadoAPI3() {
 
 function erroAoPegarQuizz3() {
     alert('Erro ao buscar o Quizz na API');
-    // window.location.reload();
+    window.location.reload();
 }
 
 
@@ -54,6 +53,7 @@ function renderizarTela3(elemento) {
     renderizarQuestoes3();
 }
 
+
 function renderizarQuestoes3() {
 
     const bodyDiv = document.querySelector('body');
@@ -70,16 +70,18 @@ function renderizarQuestoes3() {
         const questao = objQuizz3.questions[i];
         const numRespostas = questao.answers.length;
         let templateRepostas = "";
+        const questoesRandom = [...questao.answers].sort(randomizarQuestoes);
         
         for (let y = 0; y < numRespostas; y++) {
             templateRepostas += `
-            <div>
+            <div onclick="selecionarAlternativa(${questoesRandom[y].isCorrectAnswer}, this)">
                 <div class="resposta-img3">
-                    <img src=${questao.answers[y].image}>
+                    <img src=${questoesRandom[y].image}>
                 </div>
                 <div class="resposta-texto3">
-                    <p>${questao.answers[y].text}</p>
+                    <p class="${questoesRandom[y].isCorrectAnswer}">${questoesRandom[y].text}</p>
                 </div>
+                <div class="box-opacity"></div>
             </div>`
         }
 
@@ -92,12 +94,118 @@ function renderizarQuestoes3() {
                 </div>`
 
         caixaQuestaoDiv.innerHTML += templateQuestaoBox;
-
-        
-
     }
 
 }
+
+function randomizarQuestoes(){
+    return Math.random() - 0.5;
+}
+
+
+function selecionarAlternativa(booleano, element){
+
+    if (element.classList.contains('clicada')){
+        return;
+    }
+
+    element.classList.add('clicada')
+
+    const alternativaCorreta = element.parentNode.querySelector('p.true');
+    const alternativaIncorreta = element.parentNode.querySelectorAll('p.false');
+
+    alternativaCorreta.classList.add('green');
+
+    for (let i=0; i< alternativaIncorreta.length; i++){
+        alternativaIncorreta[i].classList.add('red');
+    }
+
+    let siblings = getSiblings(element);
+
+    for (let i=0; i < siblings.length; i++){
+        siblings[i].querySelector('.box-opacity').classList.add('opaco');
+        siblings[i].classList.add('clicada');
+    }
+
+    // setTimeout(scroll(element),2000);
+
+    const proximaQuestao = element.parentNode.parentNode.nextElementSibling;
+
+    setTimeout(()=>{
+        // proximaQuestao.scrollIntoView();
+    
+        if (proximaQuestao !== null){
+            proximaQuestao.scrollIntoView();
+        }
+
+    },2000)
+
+}
+
+function getSiblings(elem) {
+
+    // Setup siblings array and get the first sibling
+    var siblings = [];
+    var sibling = elem.parentNode.firstChild;
+
+    // Loop through each sibling and push to the array
+    while (sibling) {
+        if (sibling.nodeType === 1 && sibling !== elem) {
+            siblings.push(sibling);
+        }
+        sibling = sibling.nextSibling
+    }
+
+    return siblings;
+
+};
+
+function scroll (element){
+
+    const proximaQuestao = element.nextSibling;
+    // proximaQuestao.scrollIntoView();
+
+    if (proximaQuestao !== null){
+        proximaQuestao.scrollIntoView();
+    }
+
+}
+
+// function adcCorDivsIrmas(element){
+
+
+    //.classList.add('green');
+    //.classList.add('red');
+
+
+
+//     let divIteradaAntes = element;
+//     let divIteradaDps = element;
+
+//     while (divIteradaAntes.previousElementSibling !== null){
+//         divIteradaAntes = divIteradaAntes.previousElementSibling;
+    
+//         if (acertou){
+//             let siblingDiv = divIteradaAntes.previousElementSibling;
+//             siblingDiv.querySelector('p').classList.add('red');
+//         }   
+
+//         divIteradaAntes = divIteradaAntes.previousElementSibling;
+
+//     }
+
+//     while (divIteradaDps.nexElementSibling !== null){
+        
+    
+//         if (acertou){
+//             let siblingDiv = divIteradaDps.nextElementSibling;
+//             siblingDiv.querySelector('p').classList.add('red');
+//         }   
+
+//         divIteradaDps = divIteradaDps.nextElementSibling;
+//     }
+
+// }
 
 
 
