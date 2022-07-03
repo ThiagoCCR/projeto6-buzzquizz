@@ -127,15 +127,13 @@ function selecionarAlternativa(booleano, element){
         siblings[i].classList.add('clicada');
     }
 
-    // setTimeout(scroll(element),2000);
 
     const proximaQuestao = element.parentNode.parentNode.nextElementSibling;
 
     setTimeout(()=>{
-        // proximaQuestao.scrollIntoView();
     
         if (proximaQuestao !== null){
-            proximaQuestao.scrollIntoView();
+            proximaQuestao.scrollIntoView({behavior:'auto', block:'center', inline:'center'});
         }
 
     },2000)
@@ -158,99 +156,4 @@ function getSiblings(elem) {
 
     return siblings;
 
-};
-
-function scroll (element){
-
-    const proximaQuestao = element.nextSibling;
-    // proximaQuestao.scrollIntoView();
-
-    if (proximaQuestao !== null){
-        proximaQuestao.scrollIntoView();
-    }
-
 }
-
-// function adcCorDivsIrmas(element){
-
-
-    //.classList.add('green');
-    //.classList.add('red');
-
-
-
-//     let divIteradaAntes = element;
-//     let divIteradaDps = element;
-
-//     while (divIteradaAntes.previousElementSibling !== null){
-//         divIteradaAntes = divIteradaAntes.previousElementSibling;
-    
-//         if (acertou){
-//             let siblingDiv = divIteradaAntes.previousElementSibling;
-//             siblingDiv.querySelector('p').classList.add('red');
-//         }   
-
-//         divIteradaAntes = divIteradaAntes.previousElementSibling;
-
-//     }
-
-//     while (divIteradaDps.nexElementSibling !== null){
-        
-    
-//         if (acertou){
-//             let siblingDiv = divIteradaDps.nextElementSibling;
-//             siblingDiv.querySelector('p').classList.add('red');
-//         }   
-
-//         divIteradaDps = divIteradaDps.nextElementSibling;
-//     }
-
-// }
-
-
-
-// <div class="main3">
-//     <div class="titulo3">
-//     </div>
-//     <div class="questoes-container3">
-//         <div class="caixa-questao3">
-//             <div class="titulo-pergunta-3">
-//                 <p>${objQuizz3.title}</p>
-//             </div>
-//             <div class="respostas3">
-//                 <div>
-//                     <div class="resposta-img3">
-//                         <img src="./img/Rectangle 36.png">
-//                     </div>
-//                     <div class="resposta-texto3">
-//                         <p>Teste teste Teste</p>
-//                     </div>
-//                 </div>
-//                 <div>
-//                     <div class="resposta-img3">
-//                         <img src="./img/Rectangle 36.png">
-//                     </div>
-//                     <div class="resposta-texto3">
-//                         <p>Teste teste Teste</p>
-//                     </div>
-//                 </div>
-//                 <div>
-//                     <div class="resposta-img3">
-//                         <img src="./img/Rectangle 36.png">
-//                     </div>
-//                     <div class="resposta-texto3">
-//                         <p>Teste teste Teste</p>
-//                     </div>
-//                 </div>
-//                 <div>
-//                     <div class="resposta-img3">
-//                         <img src="./img/Rectangle 36.png">
-//                     </div>
-//                     <div class="resposta-texto3">
-//                         <p>Teste teste Teste</p>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     </div>
-// </div>
