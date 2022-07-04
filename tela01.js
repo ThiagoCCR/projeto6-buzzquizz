@@ -9,7 +9,7 @@ function renderizarMeuQuizz() {
 
   for (const singleId of idsArray) {
     const promise = axios.get(
-      `https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${singleId}`
+      `https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes/${singleId}`
     );
     promise.then(adicionarQuizz);
     promise.catch(erroNaAPi1);
@@ -23,7 +23,10 @@ function adicionarQuizz(resposta) {
 
 renderizarMeuQuizz();
 
+console.log(listaQuizzUsuário1)
+
 pegarQuizzAPI1();
+
 function pegarQuizzAPI1() {
   const promise = axios.get("https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes");
   promise.catch(erroNaAPi1);
@@ -31,7 +34,7 @@ function pegarQuizzAPI1() {
 }
 
 function erroNaAPi1() {
-  alert("Ocorreu um erro, os quizz não foram encontrados na API");
+  alert("Ocorreu um erro, os quizzes não foram encontrados na API");
 }
 
 function popularListas1(promise) {
@@ -59,7 +62,6 @@ function mostrarTelaSemQuizz1() {
                     <div class="titulo-botao1">
                         <h2>Você não criou nenhum </br>quizz ainda :(</h2>
                         <button class="criar-quizz-g1" onclick="criarQuizz1()">Criar Quizz</button>
-
                     </div>
                 </div>
             </div>
@@ -121,6 +123,20 @@ function mostrarTelaCompleta1() {
         </div>`;
     quizContainerDiv.innerHTML += templateQuizz;
   }
+
+  for (let i = 0; i < listaQuizz1.length; i++) {
+    let iterarQuizz = listaQuizz1[i];
+    const quizContainerDiv = document.querySelector(".quizz-container1");
+    const templateQuizz = `
+        <div class="quizz1" onclick="abrirQuizz1(${iterarQuizz.id})">
+            <img src='${iterarQuizz.image}'/>
+            <div class="titulo-quizz1">
+                <p>${iterarQuizz.title}</p>
+            </div>
+        </div>`;
+    quizContainerDiv.innerHTML += templateQuizz;
+  }
+
 }
 
 function abrirQuizz1(id) {

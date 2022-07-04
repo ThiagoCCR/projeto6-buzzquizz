@@ -370,7 +370,7 @@ function salvarQuizz() {
     ],
   };
   // const promise = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", meuQuizz);
-  const promise = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", mockQuizz);
+  const promise = axios.post("https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes", mockQuizz);
   promise.then(devolveQuizzCompleto);
 
   promise.catch(retornaErro);

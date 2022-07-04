@@ -22,7 +22,7 @@ function encontrarQuizz3() {
 
 //chamando quizz na API
 function pegarQuizzSelecionadoAPI3() {
-  const promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${idQuizz3}`);
+  const promise = axios.get(`https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes/${idQuizz3}`);
   promise.catch(erroAoPegarQuizz3);
   promise.then(renderizarTela3);
 }

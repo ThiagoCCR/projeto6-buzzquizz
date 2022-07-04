@@ -10,6 +10,7 @@ p{
 
 body{
     background-color: #FAFAFA;
+    overflow-x: hidden;
     font-family: 'Roboto', sans-serif; /*coloquei aqui pq assim toda a pagina fica com essa familia!*/
 }
 
