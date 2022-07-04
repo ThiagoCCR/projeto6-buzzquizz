@@ -30,6 +30,14 @@ function validacaoBasica() {
   urlImagem = document.querySelector(".esqueletoQuizz :nth-child(2)");
   qntPerguntas = document.querySelector(".esqueletoQuizz :nth-child(3)");
   qntNiveis = document.querySelector(".esqueletoQuizz :nth-child(4)");
+  let linkUrl = String(urlImagem.value).slice(0, 8);
+  console.log(linkUrl)
+
+  if (linkUrl !== "https://") {
+    alert("link errado");
+    return;
+  }
+
   if (
     titulo.value.length < 20 ||
     titulo.value.length > 65 ||
@@ -247,7 +255,13 @@ function verificarNiveis() {
     nivelImagem = nivelaAtual.image;
     nivelTexto = nivelaAtual.text;
     nivelAcertos = nivelaAtual.minValue;
+    let linkUrl = String(nivelImagem).slice(0, 8)
 
+    if (linkUrl !== "https://") {
+      alert("Preencha os dados corretamente");
+      return;
+    }
+   
     if (nivelTitulo.length < 10) {
       alert("Preencha os dados corretamente");
       return;
