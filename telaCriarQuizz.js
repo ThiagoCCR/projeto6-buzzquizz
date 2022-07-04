@@ -76,7 +76,7 @@ function editarPerguntas(elemento) {
   classeAcima.innerHTML += `
   <div class="perguntasDetalhadas">
   <input type="text" placeholder="Título da pergunta" />
-  <input type="text" placeholder="Cor de fundo da pergunta" />
+  <input type="color" placeholder="Cor de fundo da pergunta" />
  <div class="teste"><span>Resposta correta</span></div>
   <input type="text" placeholder="Resposta correta" />
   <input type="url" placeholder="URL da imagem" />
