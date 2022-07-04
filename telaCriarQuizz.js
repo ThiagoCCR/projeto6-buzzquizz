@@ -17,7 +17,7 @@ function criarQuizz() {
   BodyDiv.innerHTML = criacaoQuizz;
 }
 
-//criando o objeto 
+//criando o objeto
 const meuQuizz = {};
 
 //para validar as infos basicas do quizz
@@ -30,6 +30,14 @@ function validacaoBasica() {
   urlImagem = document.querySelector(".esqueletoQuizz :nth-child(2)");
   qntPerguntas = document.querySelector(".esqueletoQuizz :nth-child(3)");
   qntNiveis = document.querySelector(".esqueletoQuizz :nth-child(4)");
+  let linkUrl = String(urlImagem.value).slice(0, 8);
+  console.log(linkUrl)
+
+  if (linkUrl !== "https://") {
+    alert("link errado");
+    return;
+  }
+
   if (
     titulo.value.length < 20 ||
     titulo.value.length > 65 ||
@@ -38,11 +46,11 @@ function validacaoBasica() {
   ) {
     alert("Preencha os dados corretamente");
     return;
-  } 
+  }
 
   meuQuizz.title = titulo.value;
   meuQuizz.image = urlImagem.value;
-  console.log(meuQuizz)
+  console.log(meuQuizz);
   criarPerguntas();
 }
 
@@ -76,7 +84,7 @@ function editarPerguntas(elemento) {
   classeAcima.innerHTML += `
   <div class="perguntasDetalhadas">
   <input type="text" placeholder="Título da pergunta" />
-  <input type="text" placeholder="Cor de fundo da pergunta" />
+  <input type="color" placeholder="Cor de fundo da pergunta" />
  <div class="teste"><span>Resposta correta</span></div>
   <input type="text" placeholder="Resposta correta" />
   <input type="url" placeholder="URL da imagem" />
@@ -94,68 +102,66 @@ function editarPerguntas(elemento) {
 
 let tituloPergunta;
 function validacaoPerguntas() {
-criarObjetoPerguntas();
-verificarPerguntas();
+  criarObjetoPerguntas();
+  verificarPerguntas();
 }
 
 function criarObjetoPerguntas() {
   console.log(qntPerguntas.value);
   meuQuizz.questions = [];
   for (let i = 1; i <= qntPerguntas.value; i++) {
-   tituloPergunta = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(1)`)
-   corPergunta = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(2)`)
-   respCorreta = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(4)`)
-   imgRespCorreta = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(5)`)
-   respIncorreta1 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(7)`)
-   respIncorreta2 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(8)`)
-   respIncorreta3 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(9)`)
-   imgRespIncorreta1 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(10)`)
-   imgRespIncorreta2 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(11)`)
-   imgRespIncorreta3 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(12)`)
-    meuQuizz.questions.push( 
-    {
-    title: tituloPergunta.value,
-    color: corPergunta.value,
-    answers: [
-      {
-        text: respCorreta.value,
-        image: imgRespCorreta.value,
-        isCorrectAnswer: true,
-      },
-      {
-        text: respIncorreta1.value,
-        image: imgRespIncorreta1.value,
-        isCorrectAnswer: false,
-      },
-      {
-        text: respIncorreta2.value,
-        image: imgRespIncorreta2.value,
-        isCorrectAnswer: false,
-      },
-      {
-        text: respIncorreta3.value,
-        image: imgRespIncorreta1.value,
-        isCorrectAnswer: false,
-      }
-    ]
-    }
-    )
+    tituloPergunta = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(1)`);
+    corPergunta = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(2)`);
+    respCorreta = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(4)`);
+    imgRespCorreta = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(5)`);
+    respIncorreta1 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(7)`);
+    respIncorreta2 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(8)`);
+    respIncorreta3 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(9)`);
+    imgRespIncorreta1 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(10)`);
+    imgRespIncorreta2 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(11)`);
+    imgRespIncorreta3 = document.querySelector(`.num${i} .perguntasDetalhadas :nth-child(12)`);
+    meuQuizz.questions.push({
+      title: tituloPergunta.value,
+      color: corPergunta.value,
+      answers: [
+        {
+          text: respCorreta.value,
+          image: imgRespCorreta.value,
+          isCorrectAnswer: true,
+        },
+        {
+          text: respIncorreta1.value,
+          image: imgRespIncorreta1.value,
+          isCorrectAnswer: false,
+        },
+        {
+          text: respIncorreta2.value,
+          image: imgRespIncorreta2.value,
+          isCorrectAnswer: false,
+        },
+        {
+          text: respIncorreta3.value,
+          image: imgRespIncorreta1.value,
+          isCorrectAnswer: false,
+        },
+      ],
+    });
   }
-console.log(meuQuizz)
-  }
+  console.log(meuQuizz);
+}
 
-    let respostaCorreta; 
-    let respostaIncorreta1; 
-    let respostaIncorreta2; 
-    let respostaIncorreta3; 
+let respostaCorreta;
+let respostaIncorreta1;
+let respostaIncorreta2;
+let respostaIncorreta3;
 function verificarPerguntas() {
   for (let i = 0; i < qntPerguntas.value; i++) {
-    perguntaAtual = meuQuizz.questions[i]
-    respostaCorreta = perguntaAtual.answers[0].text
-    respostaIncorreta1 = perguntaAtual.answers[1].text
-    respostaIncorreta2 = perguntaAtual.answers[2].text
-    respostaIncorreta3 = perguntaAtual.answers[3].text
-    
+    perguntaAtual = meuQuizz.questions[i];
+    respostaCorreta = perguntaAtual.answers[0].text;
+    respostaIncorreta1 = perguntaAtual.answers[1].text;
+    respostaIncorreta2 = perguntaAtual.answers[2].text;
+    respostaIncorreta3 = perguntaAtual.answers[3].text;
+
     if (perguntaAtual.title.length < 20) {
       alert("Preencha os dados corretamente");
       return;
@@ -165,7 +171,10 @@ function verificarPerguntas() {
       return;
     }
 
-    if (respostaCorreta === null && (respostaIncorreta1 === null || respostaIncorreta2 === null || respostaIncorreta3 === null)) {
+    if (
+      respostaCorreta === null &&
+      (respostaIncorreta1 === null || respostaIncorreta2 === null || respostaIncorreta3 === null)
+    ) {
       alert("Preencha os dados corretamente");
       return;
     }
@@ -192,9 +201,8 @@ function criarNiveis() {
   BodyDiv.querySelector(
     ".criarQuizz"
   ).innerHTML += `<div class="prosseguir" onclick="validacaoNiveis()">Finalizar Quizz</div>
-  </div>`; 
-  }
-  
+  </div>`;
+}
 
 function editarNiveis(elemento) {
   elemento.classList.add("escondido");
@@ -221,20 +229,18 @@ function validacaoNiveis() {
 function criarObjetoNiveis() {
   meuQuizz.levels = [];
   for (let i = 1; i <= qntNiveis.value; i++) {
-  tituloNivel = document.querySelector(`.num${i} .niveisDetalhados :nth-child(1)`);
-  qntAcertos = document.querySelector(`.num${i} .niveisDetalhados :nth-child(2)`);
-  urlImagemNivel = document.querySelector(`.num${i} .niveisDetalhados :nth-child(3)`);
-  descricaoNivel = document.querySelector(`.num${i} .niveisDetalhados :nth-child(4)`);
-  meuQuizz.levels.push(
-      {
-        title: tituloNivel.value,
-        image: urlImagemNivel.value,
-        text: descricaoNivel.value,
-        minValue: qntAcertos.value
-      }
-  )
+    tituloNivel = document.querySelector(`.num${i} .niveisDetalhados :nth-child(1)`);
+    qntAcertos = document.querySelector(`.num${i} .niveisDetalhados :nth-child(2)`);
+    urlImagemNivel = document.querySelector(`.num${i} .niveisDetalhados :nth-child(3)`);
+    descricaoNivel = document.querySelector(`.num${i} .niveisDetalhados :nth-child(4)`);
+    meuQuizz.levels.push({
+      title: tituloNivel.value,
+      image: urlImagemNivel.value,
+      text: descricaoNivel.value,
+      minValue: qntAcertos.value,
+    });
   }
-  console.log(meuQuizz)
+  console.log(meuQuizz);
 }
 
 let nivelTitulo;
@@ -242,29 +248,35 @@ let nivelImagem;
 let nivelTexto;
 let nivelAcertos;
 
-function verificarNiveis () {
+function verificarNiveis() {
   for (let i = 0; i < qntNiveis.value; i++) {
-    let nivelaAtual = meuQuizz.levels[i]
-    nivelTitulo = nivelaAtual.title
-    nivelImagem = nivelaAtual.image
-    nivelTexto = nivelaAtual.text
-    nivelAcertos = nivelaAtual.minValue
+    let nivelaAtual = meuQuizz.levels[i];
+    nivelTitulo = nivelaAtual.title;
+    nivelImagem = nivelaAtual.image;
+    nivelTexto = nivelaAtual.text;
+    nivelAcertos = nivelaAtual.minValue;
+    let linkUrl = String(nivelImagem).slice(0, 8)
 
-  if (nivelTitulo.length < 10) {
-    alert("Preencha os dados corretamente");
-    return;
-  }
+    if (linkUrl !== "https://") {
+      alert("Preencha os dados corretamente");
+      return;
+    }
+   
+    if (nivelTitulo.length < 10) {
+      alert("Preencha os dados corretamente");
+      return;
+    }
 
-  if (nivelAcertos < 0 || nivelAcertos > 100) {
-    alert("Preencha os dados corretamente");
-    return;
-  }
+    if (nivelAcertos < 0 || nivelAcertos > 100) {
+      alert("Preencha os dados corretamente");
+      return;
+    }
 
-  if (nivelTexto.length < 30) {
-    alert("Preencha os dados corretamente");
-    return;
+    if (nivelTexto.length < 30) {
+      alert("Preencha os dados corretamente");
+      return;
+    }
   }
-}
   finalizarQuizz();
 }
 
@@ -288,29 +300,102 @@ function finalizarQuizz() {
   BodyDiv.innerHTML = novoQuizz;
 }
 
-function salvarQuizz () {
-  const promise = axios.post ("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", meuQuizz);
+function salvarQuizz() {
+  const mockQuizz = {
+    title: "Título do quizz",
+    image: "https://http.cat/411.jpg",
+    questions: [
+      {
+        title: "Título da pergunta 1",
+        color: "#123456",
+        answers: [
+          {
+            text: "Texto da resposta 1",
+            image: "ttps://http.cat/411.jpg",
+            isCorrectAnswer: true,
+          },
+          {
+            text: "Texto da resposta 2",
+            image: "https://http.cat/412.jpg",
+            isCorrectAnswer: false,
+          },
+        ],
+      },
+      {
+        title: "Título da pergunta 2",
+        color: "#123456",
+        answers: [
+          {
+            text: "Texto da resposta 1",
+            image: "https://http.cat/411.jpg",
+            isCorrectAnswer: true,
+          },
+          {
+            text: "Texto da resposta 2",
+            image: "https://http.cat/412.jpg",
+            isCorrectAnswer: false,
+          },
+        ],
+      },
+      {
+        title: "Título da pergunta 3",
+        color: "#123456",
+        answers: [
+          {
+            text: "Texto da resposta 1",
+            image: "https://http.cat/411.jpg",
+            isCorrectAnswer: true,
+          },
+          {
+            text: "Texto da resposta 2",
+            image: "https://http.cat/412.jpg",
+            isCorrectAnswer: false,
+          },
+        ],
+      },
+    ],
+    levels: [
+      {
+        title: "Título do nível 1",
+        image: "https://http.cat/411.jpg",
+        text: "Descrição do nível 1",
+        minValue: 0,
+      },
+      {
+        title: "Título do nível 2",
+        image: "https://http.cat/412.jpg",
+        text: "Descrição do nível 2",
+        minValue: 50,
+      },
+    ],
+  };
+  // const promise = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", meuQuizz);
+  const promise = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", mockQuizz);
   promise.then(devolveQuizzCompleto);
-  promise.catch(retornaErro); 
-}
 
+  promise.catch(retornaErro);
+}
+let currentQuizzId = 0;
 function devolveQuizzCompleto(resposta) {
-  const idQuizz = resposta.id
-  console.log(resposta.id)
-  const promise = axios.get (`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/idQuizz`)
-
+  currentQuizzId = resposta.data.id;
   //salvando no localStorage
-  const idQuizzSerializado = JSON.stringify(idQuizz);
-  localStorage.setItem("id", idQuizzSerializado);
-  renderizarMeuQuizz()
+  const createdQuizzes = JSON.parse(localStorage.getItem("ids"));
+  if (!createdQuizzes) {
+    localStorage.setItem("ids", JSON.stringify([currentQuizzId]));
+  } else {
+    localStorage.setItem("ids", JSON.stringify([...createdQuizzes, currentQuizzId]));
+  }
 }
 
-function renderizarMeuQuizz () {
-  console.log("vai renderizar")
+function acessarQuizz() {
+  const BodyDiv = document.querySelector("body");
+  idQuizz3 = currentQuizzId;
+  BodyDiv.innerHTML = "";
+  renderizarTela03();
 }
 
 function retornaErro() {
-  console.log("deu erro")
+  console.log("deu erro");
 }
 
 function voltarHome() {
