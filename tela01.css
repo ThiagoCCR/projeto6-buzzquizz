@@ -4,9 +4,12 @@
     box-sizing: border-box;
 }
 
+p{
+    word-break: break-all;
+}
+
 body{
     background-color: #FAFAFA;
-    overflow-x: hidden;
     font-family: 'Roboto', sans-serif; /*coloquei aqui pq assim toda a pagina fica com essa familia!*/
 }
 
@@ -170,6 +173,14 @@ h3{
 }
 
 @media (max-width: 400px){
+
+    .titulo-pergunta-3{
+        width: 92% !important;
+    }
+
+    .resultado{
+        flex-direction: column;
+    }
 
     .usuario-quizz1{
         width: 340px;
